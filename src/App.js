@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [itemInputs, setItemInputs] = useState({});
+
+    const setStateForCurrentItem = (e) => {
+        const {name, value} = e.target;
+        setItemInputs({...itemInputs, [name]: value});
+    }
+
+    const [listToDisplay, setListToDisplay] = useState([]);
+
+    const addItemToList = () => {
+        setListToDisplay([...listToDisplay, itemInputs]);
+        setItemInputs({itemCount: '', itemName: ''});
+    }
+
+    const deleteItem = (index) => {
+        console.log(index);
+        setListToDisplay([...listToDisplay].splice(index, 1));
+    }
+
+    return (
+        <div className="App">
+            <div className="itemList">
+                {
+                    listToDisplay &&
+                    listToDisplay.map((el, i) => (
+                        <div>
+                            <span>{el.itemCount} </span>
+                            <span>{el.itemName} </span>
+                            <button key={el.itemName} onClick={() => deleteItem(i)}>DELETE</button>
+                        </div>
+                    ))
+                }
+            </div>
+            <input type="text" name="itemCount" value={itemInputs.itemCount} placeholder="0"
+                   onChange={setStateForCurrentItem}></input>
+            <input type="text" name="itemName" value={itemInputs.itemName} placeholder="Item Name..."
+                   onChange={setStateForCurrentItem}></input>
+            <button className="itemsInput-addButton" onClick={addItemToList}>ADD</button>
+        </div>
+    );
 }
 
 export default App;
