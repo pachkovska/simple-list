@@ -13,6 +13,7 @@ function AddNewCounterSection (props)  {
 
     const onAddButtonClick = () => {
         props.onAddButtonClick(counterValues);
+        setCounterValues({});
     }
 
     return (
@@ -22,12 +23,14 @@ function AddNewCounterSection (props)  {
                 onChange={(ev) => handleInputChange(ev)}
                 name={"count"}
                 placeholder={0}
+                value={counterValues.count || ''}
             />
             <InputField
                 className={"addName"}
                 onChange={(ev) => handleInputChange(ev)}
                 name={"stockName"}
                 placeholder="Stock Name..."
+                value={counterValues.stockName || ''}
             />
             <AddButton
                 onClick={onAddButtonClick}

@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 
 function IncrementButton(props) {
 
-    const [isClicked, setIsClicked] = useState(false);
-
     const onButtonClick = () => {
-        setIsClicked(!isClicked);
         props.incrementNumber();
     }
 
     return (
-        <div className="IncrementButton">
+        <div className="IncrementButtons-single">
                 <button onClick={onButtonClick}>{props.step}</button>
         </div>
     );

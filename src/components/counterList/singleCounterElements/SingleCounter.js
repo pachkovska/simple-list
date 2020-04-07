@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import DeleteButton from "./DeleteButton";
+import React, {useState, useEffect} from "react";
+import SingleCounterActionButton from "./SingleCounterActionButton";
 import InputField from "../../InputField";
 import IncrementButton from "./IncrementButton";
 import _ from 'lodash';
 
 function SingleCounter(props) {
-
-    // const [stockAmount, setStockAmount] = useState(0);
 
     const [rangeValues, setRangeValue] = useState({});
 
@@ -18,39 +16,79 @@ function SingleCounter(props) {
     const handleInputChange = (ev) => {
         const {name, value} = ev.target;
         if (((value < 0 || value > 20) || isNaN(value)) && value !== '') {
-            alert('Sorry non-integers or numbers outside of advised range are not allowed') && setRangeValue({...rangeValues, [name]: ''});
+            alert('Sorry non-integers or numbers outside of advised range are not allowed') && setRangeValue({
+                ...rangeValues,
+                [name]: ''
+            });
         } else {
             setRangeValue({...rangeValues, [name]: +value});
         }
     }
 
+    useEffect(() => {
+        if (rangeValues.fromValue > rangeValues.toValue && rangeValues.fromValue !== 0 && rangeValues.toValue !== 0) {
+            setErrorState({
+                errorState: true,
+                errorText: 'Sorry,  begin incrementing value can not be bigger than end incrementing value.',
+            });
+        } else {
+            setErrorState({
+                errorState: false,
+                errorText: '',
+            });
+        }
+    }, [rangeValues]);
+
     const handleStockChange = (n) => {
         props.handleStockChange(n);
     }
 
+    const resetSingleCounter = (index) => {
+        setRangeValue({});
+        props.resetSingleCounter(index);
+    }
+
+    useEffect((index) => {
+        if (props.listToDisplay.every((el) => el.count === 0)) {
+            resetSingleCounter(index);
+        }
+    }, [props.listToDisplay])
+
+
     return (
         <div className="counterList-single">
-                <InputField
-                    className={"fromValue"}
-                    onChange={(ev) => handleInputChange(ev)}
-                    name={"fromValue"}
-                    placeholder={0}
-                    value={rangeValues.fromValue || ''}
-                />
-                 <span>{props.count} </span>
-                 <span>{props.stockName} </span>
-                 <DeleteButton
-                    stockName={props.stockName}
-                    index={props.index}
-                    deleteItem={props.deleteItem}
-                 />
-                 <InputField
-                     className={"toValue"}
-                     onChange={(ev) => handleInputChange(ev)}
-                     name={"toValue"}
-                     placeholder={0}
-                     value={rangeValues.toValue || ''}
-                 />
+            <InputField
+                className={"fromValue"}
+                onChange={(ev) => handleInputChange(ev)}
+                name={"fromValue"}
+                placeholder={0}
+                value={rangeValues.fromValue || ''}
+                index={props.index}
+            />
+            <div className={"stockCount"}>{props.count} </div>
+            <div className={"stockName"}>{props.stockName} </div>
+            <SingleCounterActionButton
+                stockName={props.stockName}
+                index={props.index}
+                handleAction={resetSingleCounter}
+                buttonName={"RESET"}
+                className={"counterActionButton--reset"}
+            />
+            <SingleCounterActionButton
+                stockName={props.stockName}
+                index={props.index}
+                handleAction={props.deleteItem}
+                buttonName={"DELETE"}
+                className={"counterActionButton--delete"}
+            />
+            <InputField
+                className={"toValue"}
+                onChange={(ev) => handleInputChange(ev)}
+                name={"toValue"}
+                placeholder={0}
+                value={rangeValues.toValue || ''}
+                index={props.index}
+            />
             {error.errorState
                 ? <div className="errorMessage">{error.errorText}</div>
                 : rangeValues.fromValue && rangeValues.toValue
