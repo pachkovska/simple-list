@@ -1,16 +1,19 @@
 .App {
   text-align: center;
-  margin: 20px;
+  /*margin: 20px;*/
   font-family: Arial;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #2b2d2f;
+  background-color: #fef6f6;
+  width: 100vw;
+  height: 100vh;
 }
 
 .appHeader {
   text-align: center;
-  margin-bottom: 20px;
+  margin: 20px;
 }
 
 .allCountersSection {
@@ -19,6 +22,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
   align-content: center;
+  width: 80%;
 }
 
 .counterList {
@@ -29,18 +33,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: stretch;
 }
 
 .allCountersActionButton--resetAll {
   grid-row: 2;
   grid-column: 1;
   justify-self: end;
+  border: 1px solid #679b9b;
+  background-color: #679b9b;
+  color: white;
+  margin-right: 10px;
+  width: 200px;
+  height: 20px;
+  border-radius: 7px;
+  margin-top: 20px;
+  /*text-align: center;*/
 }
 
 .allCountersActionButton--deleteAll {
   grid-row: 2;
   grid-column: 2;
   justify-self: start;
+  border: 1px solid #ff7272;
+  background-color: #ff7272;
+  color: white;
+  margin-right: 10px;
+  width: 200px;
+  height: 20px;
+  border-radius: 7px;
+  margin-top: 20px;
 }
 
 .addNewCounterSection {
@@ -54,6 +76,14 @@
   display: grid;
   grid-template-columns: 30px 1fr 1fr 30px 100px;
   grid-template-rows: auto auto auto;
+  grid-gap: 10px;
+  padding: 15px;
+  border: 1px solid rgba(115, 115, 115, 0.05);
+  box-shadow: rgba(0, 0, 0) 2px 4px 8px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 100%;
+  margin: 10px;
 }
 
 .fromValue {
@@ -64,7 +94,7 @@
 }
 
 .fromValue > input, .toValue > input {
-  width: 20px;
+  width: 30px;
   margin: 0;
 }
 
@@ -80,7 +110,7 @@
   grid-column: 2 / span 2;
   align-self: center;
   justify-self: center;
-  font-size: 48px;
+  font-size: 36px;
 }
 
 .stockName {
@@ -96,7 +126,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 5px;
+  /*margin-left: 5px;*/
 }
 
 .decrementButtons {
@@ -105,7 +135,7 @@
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
-  margin-right: 5px;
+  /*margin-right: 5px;*/
 }
 
 .IncrementButtons-single {
@@ -123,8 +153,81 @@
   background-color: #8dc9de;
 }
 
-button {
+button, button:hover {
   background-color: inherit;
   border: none;
+  color: inherit;
+  outline: none;
 }
+
+.counterActionButton--reset {
+  border: 1px solid #679b9b;
+  background-color: #679b9b;
+  color: white;
+  margin-right: 10px;
+  width: 70px;
+  height: 20px;
+  border-radius: 7px;
+  align-self: end;
+}
+
+.counterActionButton--delete {
+  border: 1px solid #ff7272;
+  background-color: #ff7272;
+  color: white;
+  margin-right: 10px;
+  width: 70px;
+  height: 20px;
+  border-radius: 7px;
+  align-self: start;
+}
+
+.addNewCounterSection > * {
+  margin: 10px;
+}
+
+.addCount > input {
+  width: 30px;
+}
+
+.addCount {
+  justify-self: end;
+}
+
+.addButton {
+  border: 1px solid #aacfcf;
+  background-color: #aacfcf;
+  color: white;
+  margin-right: 10px;
+  width: 70px;
+  height: 20px;
+  border-radius: 7px;
+}
+
+.addNewCounterSection {
+  text-align: center;
+  padding: 15px;
+  border: 1px solid rgba(115, 115, 115, 0.05);
+  box-shadow: rgba(0, 0, 0) 2px 4px 8px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 100%;
+  /*margin: 10px;*/
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  height: 80px;
+}
+
+.addNewCounterSection-title {
+  grid-column: 1 / span 3;
+  grid-row: 1;
+}
+
+.addName > input {
+  width: 200px;
+}
+
+
 

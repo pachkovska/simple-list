@@ -18,6 +18,7 @@ function AddNewCounterSection (props)  {
 
     return (
         <div className={"addNewCounterSection"}>
+            <div className={"addNewCounterSection-title"}>Add your stock counter below: </div>
             <InputField
                 className={"addCount"}
                 onChange={(ev) => handleInputChange(ev)}
