@@ -90,7 +90,8 @@ function SingleCounter(props) {
                 index={props.index}
             />
             {error.errorState
-                ? <div className="errorMessage">{error.errorText}</div>
+                ? null
+                // <div className="errorMessage">{error.errorText}</div>
                 : rangeValues.fromValue && rangeValues.toValue
                     ? <>
                         <div className="incrementButtons">
