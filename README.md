@@ -20,5 +20,6 @@ User should be able to delete a single card by clicking `delete` button within i
 User should be able to delete all of his/hers stock cards by clicking `deletre all` button. This action will bring user to the default state of the page, which is same page that user lands on when the application first opens. 
 
 User should be able to reset stock amount of all cards by clicking `reset all` button. This action will zero out counters of all cards as well as make all incrementing buttons and decrementing buttons disappear, keeping just list of stock names for the user.
+
 <img width="694" alt="Screen Shot 2020-04-08 at 12 26 18 PM" src="https://user-images.githubusercontent.com/19315082/78825066-346e8380-7994-11ea-9ef9-814db40e978b.png">
 
