@@ -49,10 +49,8 @@ function SingleCounter(props) {
     }
 
     useEffect((index) => {
-        if (props.listToDisplay.every((el) => el.count === 0)) {
-            resetSingleCounter(index);
-        }
-    }, [props.listToDisplay])
+        if(props.resetAllButtonState) resetSingleCounter(index);
+    }, [props.resetAllButtonState]);
 
 
     return (

@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import SingleCounter from "./singleCounterElements/SingleCounter";
 import AllCountersActionButton from "../AllCountersActionButton";
 
 function FullCounterList(props) {
+
+    const [resetAllButtonState, setResetAllButtonState] = useState(false);
 
     const deleteItem = (index) => {
         let newList = props.listToDisplay;
@@ -33,9 +35,16 @@ function FullCounterList(props) {
 
     const handleAllCountersReset = () => {
         let newList = props.listToDisplay;
+        setResetAllButtonState(!resetAllButtonState);
         newList.map((el, index) => resetSingleCounter(index));
-        props.updateCounterList(newList);
+
     }
+
+    useEffect(() => {
+        if(props.listToDisplay.every(el => el.count ===0) && resetAllButtonState) {
+            setResetAllButtonState(!resetAllButtonState);
+        }
+    }, [resetAllButtonState]);
 
     return (
         <div className="allCountersSection">
@@ -51,6 +60,7 @@ function FullCounterList(props) {
                             handleStockChange={(n) => handleStockChange(n, index)}
                             resetSingleCounter={() => resetSingleCounter(index)}
                             listToDisplay={props.listToDisplay}
+                            resetAllButtonState={resetAllButtonState}
                         />
                     ))
                 }

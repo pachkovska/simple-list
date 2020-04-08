@@ -161,6 +161,9 @@ button, button:hover {
   border: none;
   color: inherit;
   outline: none;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
 }
 
 .counterActionButton--reset {
