@@ -49,10 +49,9 @@ function SingleCounter(props) {
     }
 
     useEffect((index) => {
-        if (props.listToDisplay.every((el) => el.count === 0)) {
-            resetSingleCounter(index);
-        }
-    }, [props.listToDisplay])
+        resetSingleCounter(index);
+        // setRangeValue({});
+    }, [props.count])
 
 
     return (

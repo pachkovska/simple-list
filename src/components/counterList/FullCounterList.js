@@ -34,7 +34,7 @@ function FullCounterList(props) {
     const handleAllCountersReset = () => {
         let newList = props.listToDisplay;
         newList.map((el, index) => resetSingleCounter(index));
-        props.updateCounterList(newList);
+        // console.log(newList);
     }
 
     return (
