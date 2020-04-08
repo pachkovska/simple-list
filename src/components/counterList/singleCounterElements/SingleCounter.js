@@ -49,9 +49,8 @@ function SingleCounter(props) {
     }
 
     useEffect((index) => {
-        resetSingleCounter(index);
-        // setRangeValue({});
-    }, [props.count])
+        if(props.resetAllButtonState) resetSingleCounter(index);
+    }, [props.resetAllButtonState]);
 
 
     return (
